@@ -14,12 +14,15 @@ export class HttpService {
   getPokemon() {
     let gengar = this._http.get('https://pokeapi.co/api/v2/pokemon/gengar');
     gengar.subscribe(data => {
+
       console.log(data);
+      console.log("Gengar's " + data['abilities'][0]['ability']['name'] + " is the best ability")
       let ability = data['abilities'][0]['ability']['url']      
       let able = this._http.get(ability);
       able.subscribe(able_data => {
         for(let i=0;i<able_data['pokemon'].length;i++) 
           console.log(able_data['pokemon'][i]['pokemon']['name']);
+          console.log("all use " + data['abilities'][0]['ability']['name']);
       })
 
 
